@@ -44,7 +44,7 @@ int main(void)
     Vector2 posImagen1 = {150, (768 / 2)};
 
     // velocidad que se le asignara a la nave
-    Vector2 velocidad = { 5.0f, 5.0f };
+    Vector2 velocidad = { 5.0f, 100.0f };
 
     // Color de la nave 1
     Color colImagen1 = {255,161,0,255};
@@ -65,6 +65,10 @@ int main(void)
     // Bucle principal del juego (se repite hasta que se cierre la ventana)
     while (!WindowShouldClose())
     {
+
+        // Se establece un tiempo real
+        float deltaTime = GetFrameTime();
+
         // Buffer de teclado que detecta si se presiono la tecla ESC para cerrar la ventana
         if (IsKeyPressed(KEY_ESCAPE)) {
             CloseWindow();
@@ -88,12 +92,17 @@ int main(void)
             posImagen1.x += velocidad.x;
         }
 
+        // Aplicamos salto simple
+
+
+
         // Captura de eventos del mouse
             
             // Devuelve la posicion del mouse
         Vector2 windowPosition = GetMousePosition();
+            // Booleano que chequea la posicion del mouse con la del boton
         bool collision = CheckCollisionPointCircle(windowPosition, Boton, r);
-
+            // Funcion que permite cambiar el color del fondo
         if (collision && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 
             fondo.r = GetRandomValue(0, 255);
